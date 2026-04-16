@@ -11,16 +11,22 @@ const ContactSection = () => {
           transition={{ duration: 0.5 }}
         >
           <p className="font-mono text-sm tracking-widest uppercase text-primary mb-2">Get in Touch</p>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Let's Connect</h2>
+          <h2 className="text-3xl md:text-4xl font-bold font-heading mb-6">Let's Connect</h2>
           <p className="text-muted-foreground mb-10">
             I'm always open to discussing new projects, opportunities, or collaborations in the DevOps and cloud space.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="mailto:ndhrritiraj@gmail.com"
+              href="mailto:techwithrajj@gmail.com"
               className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 transition-opacity"
             >
-              Say Hello
+              Email Me
+            </a>
+            <a
+              href="tel:+916001447657"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-border text-foreground font-medium hover:bg-secondary transition-colors"
+            >
+              +91 6001447657
             </a>
             <a
               href="https://github.com"

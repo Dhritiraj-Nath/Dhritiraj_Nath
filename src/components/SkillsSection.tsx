@@ -2,10 +2,10 @@ import { motion } from "framer-motion";
 
 const skills = [
   { category: "Containerization", items: ["Docker", "Kubernetes", "Docker Compose"] },
-  { category: "Cloud & DevOps", items: ["AWS", "Terraform", "Ansible"] },
-  { category: "Scripting", items: ["Bash", "Linux Shell", "Automation"] },
+  { category: "Cloud & DevOps", items: ["AWS", "Terraform", "Ansible", "Cloud Security"] },
+  { category: "AI & Data", items: ["Prompt Engineering", "Tableau", "Spreadsheets", "Data Analysis"] },
+  { category: "Programming", items: ["Java", "Shell Scripting", "Spring Boot", "DSA"] },
   { category: "Version Control", items: ["Git", "GitHub"] },
-  { category: "Programming", items: ["Java"] },
 ];
 
 const SkillsSection = () => {
@@ -19,7 +19,7 @@ const SkillsSection = () => {
           transition={{ duration: 0.5 }}
         >
           <p className="font-mono text-sm tracking-widest uppercase text-primary mb-2">Expertise</p>
-          <h2 className="text-3xl md:text-4xl font-bold mb-12">Skills & Tools</h2>
+          <h2 className="text-3xl md:text-4xl font-bold font-heading mb-12">Skills & Tools</h2>
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

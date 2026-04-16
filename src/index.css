@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+/* Premium Font Imports */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&family=Lato:wght@400;700&family=Urbanist:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -8,33 +9,28 @@
   :root {
     --background: 0 0% 100%;
     --foreground: 260 20% 16%;
-
     --card: 260 20% 97%;
     --card-foreground: 260 20% 16%;
-
     --popover: 260 20% 97%;
     --popover-foreground: 260 20% 16%;
-
     --primary: 265 85% 58%;
     --primary-foreground: 0 0% 100%;
-
     --secondary: 260 20% 93%;
     --secondary-foreground: 260 20% 30%;
-
     --muted: 260 15% 92%;
     --muted-foreground: 260 10% 45%;
-
     --accent: 265 85% 58%;
     --accent-foreground: 0 0% 100%;
-
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-
     --border: 260 15% 88%;
     --input: 260 15% 88%;
     --ring: 265 85% 58%;
-
     --radius: 0.75rem;
+
+    /* Font Variables */
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
 
     --hero-gradient: linear-gradient(135deg, hsl(265 85% 58% / 0.1), hsl(290 60% 50% / 0.06), transparent);
     --glow-primary: 0 0 80px hsl(265 85% 58% / 0.12);
@@ -44,44 +40,77 @@
   .dark {
     --background: 260 18% 6%;
     --foreground: 260 10% 92%;
-
     --card: 260 18% 9%;
     --card-foreground: 260 10% 92%;
-
     --popover: 260 18% 9%;
     --popover-foreground: 260 10% 92%;
-
     --primary: 265 85% 65%;
     --primary-foreground: 260 18% 6%;
-
     --secondary: 260 18% 14%;
     --secondary-foreground: 260 10% 80%;
-
     --muted: 260 18% 16%;
     --muted-foreground: 260 10% 50%;
-
     --accent: 265 85% 65%;
     --accent-foreground: 260 18% 6%;
-
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-
     --border: 260 18% 18%;
     --input: 260 18% 18%;
     --ring: 265 85% 65%;
-
     --hero-gradient: linear-gradient(135deg, hsl(265 85% 65% / 0.15), hsl(290 60% 50% / 0.08), transparent);
     --glow-primary: 0 0 80px hsl(265 85% 65% / 0.18);
     --text-gradient: linear-gradient(135deg, hsl(265 85% 65%), hsl(280 90% 75%));
   }
+
+  /* Theme Overrides */
+  :root.theme-blue, .dark.theme-blue {
+    --primary: 210 100% 66%;
+    --ring: 210 100% 66%;
+    --text-gradient: linear-gradient(135deg, hsl(210 100% 66%), hsl(190 90% 60%));
+  }
+  :root.theme-green, .dark.theme-green {
+    --primary: 142 72% 55%;
+    --ring: 142 72% 55%;
+    --text-gradient: linear-gradient(135deg, hsl(142 72% 55%), hsl(160 80% 50%));
+  }
+  :root.theme-orange, .dark.theme-orange {
+    --primary: 24 95% 64%;
+    --ring: 24 95% 64%;
+    --text-gradient: linear-gradient(135deg, hsl(24 95% 64%), hsl(10 90% 60%));
+  }
+  :root.theme-pink, .dark.theme-pink {
+    --primary: 330 100% 70%;
+    --ring: 330 100% 70%;
+    --text-gradient: linear-gradient(135deg, hsl(330 100% 70%), hsl(300 90% 65%));
+  }
+
+  /* Font Overrides */
+  :root.font-tech, .dark.font-tech {
+    --font-heading: 'Space Grotesk', sans-serif;
+    --font-body: 'JetBrains Mono', monospace;
+  }
+  :root.font-elegant, .dark.font-elegant {
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Lato', sans-serif;
+  }
+  :root.font-bold, .dark.font-bold {
+    --font-heading: 'Syne', sans-serif;
+    --font-body: 'Urbanist', sans-serif;
+  }
+  :root.font-modern, .dark.font-modern {
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+  }
 }
 
 @layer base {
-  * {
-    @apply border-border;
+  * { @apply border-border; }
+  body { 
+    @apply bg-background text-foreground antialiased transition-all duration-500; 
+    font-family: var(--font-body);
   }
-  body {
-    @apply bg-background text-foreground font-sans antialiased;
+  h1, h2, h3, h4, h5, h6, .font-heading {
+    font-family: var(--font-heading);
   }
 }
 
@@ -91,9 +120,6 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-  }
-  .hero-glow {
-    box-shadow: var(--glow-primary);
   }
   .glass {
     background: hsl(var(--card) / 0.6);
@@ -105,6 +131,16 @@
   }
   .hover-lift:hover {
     transform: translateY(-4px);
-    box-shadow: 0 20px 40px hsl(265 85% 58% / 0.15);
+    box-shadow: 0 20px 40px hsl(var(--primary) / 0.15);
   }
+  .animate-blob { animation: blob 7s infinite; }
+  .animation-delay-2000 { animation-delay: 2s; }
+  .animation-delay-4000 { animation-delay: 4s; }
+}
+
+@keyframes blob {
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+  100% { transform: translate(0px, 0px) scale(1); }
 }

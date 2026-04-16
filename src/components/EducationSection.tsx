@@ -4,23 +4,19 @@ const education = [
   {
     institution: "The Assam Kaziranga University",
     degree: "B.Tech in Computer Science Engineering",
-    score: "CGPA: 8.5/10",
-  },
-  {
-    institution: "Trinity Junior Science College",
-    degree: "12th SEBA",
-    score: "CGPA: 7.5/10",
+    score: "2024 – Present",
   },
   {
     institution: "Jatiya Vidyalaya Sipajhar",
-    degree: "10th SEBA",
-    score: "CGPA: 9.8/10",
+    degree: "Secondary Education (10th)",
+    score: "Grade: 93%",
   },
 ];
 
 const certifications = [
-  "Learn by Doing – Prompt Engineering",
-  "Deloitte Australia – Data Analytics Job Simulation",
+  "Learn by Doing - Prompt Engineering 101 (KodeKloud)",
+  "Deloitte Australia - Data Analytics Job Simulation",
+  "Google Cloud Generative AI (Google Cloud Skills Boost)",
 ];
 
 const EducationSection = () => {
@@ -34,7 +30,7 @@ const EducationSection = () => {
           transition={{ duration: 0.5 }}
         >
           <p className="font-mono text-sm tracking-widest uppercase text-primary mb-2">Background</p>
-          <h2 className="text-3xl md:text-4xl font-bold mb-12">Education & Certifications</h2>
+          <h2 className="text-3xl md:text-4xl font-bold font-heading mb-12">Education & Certifications</h2>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-10">
