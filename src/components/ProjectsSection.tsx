@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import TiltCard from "./TiltCard";
-import { Github, Globe, Box, Server, Cpu, Database, Cloud, Terminal, Laptop } from "lucide-react";
+import { Github, Globe, Box, Server, Cpu, Database, Cloud, Terminal, Laptop, ArrowRight } from "lucide-react";
 
 const projects = [
   {
@@ -97,7 +97,7 @@ const ProjectsSection = () => {
                   <ul className="space-y-3 flex-grow">
                     {project.points.map((p, j) => (
                       <li key={j} className="text-sm text-muted-foreground flex gap-3 leading-relaxed">
-                        <span className="text-primary font-bold mt-1 shrink-0">→</span>
+                        <ArrowRight className="text-primary shrink-0 transition-transform group-hover:translate-x-1 mt-1" size={14} />
                         {p}
                       </li>
                     ))}

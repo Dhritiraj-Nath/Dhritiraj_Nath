@@ -4,9 +4,10 @@ import { motion } from "framer-motion";
 const ThemeToggle = () => {
   const [dark, setDark] = useState(() => {
     if (typeof window !== "undefined") {
-      return document.documentElement.classList.contains("dark");
+      const saved = localStorage.getItem("theme");
+      return saved === "dark";
     }
-    return true;
+    return false;
   });
 
   useEffect(() => {
@@ -18,12 +19,6 @@ const ThemeToggle = () => {
       localStorage.setItem("theme", "light");
     }
   }, [dark]);
-
-  useEffect(() => {
-    const saved = localStorage.getItem("theme");
-    if (saved === "light") setDark(false);
-    else document.documentElement.classList.add("dark");
-  }, []);
 
   return (
     <button

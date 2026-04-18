@@ -1,17 +1,24 @@
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import GravityParticles from "./GravityParticles";
+import Floating3DObjects from "./Floating3DObjects";
 
 const Background3DEffect = () => {
+  const { scrollYProgress } = useScroll();
   const [elements, setElements] = useState<{ id: number; x: number; y: number; size: number; duration: number }[]>([]);
 
+  // Parallax transforms for "sliding" effect
+  const gridY = useTransform(scrollYProgress, [0, 1], ["0%", "-30%"]);
+  const glow1Y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const glow2Y = useTransform(scrollYProgress, [0, 1], ["0%", "-50%"]);
+
   useEffect(() => {
-    const newElements = Array.from({ length: 20 }).map((_, i) => ({
+    const newElements = Array.from({ length: 30 }).map((_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
-      size: Math.random() * 10 + 2,
-      duration: Math.random() * 20 + 10,
+      size: Math.random() * 8 + 2,
+      duration: Math.random() * 25 + 15,
     }));
     setElements(newElements);
   }, []);
@@ -19,47 +26,61 @@ const Background3DEffect = () => {
   return (
     <div className="fixed inset-0 -z-50 overflow-hidden pointer-events-none">
       <GravityParticles />
+      <Floating3DObjects />
       
-      {/* 3D Perspective Grid */}
-      <div 
-        className="absolute inset-0 opacity-[0.03]"
+      {/* 3D Perspective Grid with Parallax Sliding */}
+      <motion.div 
+        className="absolute inset-x-0 top-0 bottom-[-50%] opacity-[0.05]"
         style={{
-          backgroundImage: `linear-gradient(to right, #888 1px, transparent 1px), linear-gradient(to bottom, #888 1px, transparent 1px)`,
-          backgroundSize: '100px 100px',
-          perspective: '1000px',
-          transform: 'rotateX(60deg) translateY(-20%)',
+          backgroundImage: `linear-gradient(to right, hsl(var(--primary)) 1px, transparent 1px), linear-gradient(to bottom, hsl(var(--primary)) 1px, transparent 1px)`,
+          backgroundSize: '80px 80px',
+          perspective: '1500px',
+          transform: 'rotateX(60deg)',
           transformOrigin: 'top',
+          y: gridY
         }}
       />
 
-      {/* Floating 3D Particles */}
+      {/* Dynamic Floating Elements */}
       {elements.map((el) => (
         <motion.div
           key={el.id}
           initial={{ opacity: 0 }}
           animate={{
-            opacity: [0.1, 0.3, 0.1],
-            y: ["0%", "100%"],
-            x: [`${el.x}%`, `${el.x + (Math.random() * 10 - 5)}%`],
+            opacity: [0.1, 0.4, 0.1],
+            y: ["0vh", "110vh"],
           }}
           transition={{
             duration: el.duration,
             repeat: Infinity,
             ease: "linear",
+            delay: el.id * 0.2
           }}
-          className="absolute rounded-full bg-primary/20 blur-[1px]"
+          className="absolute rounded-full bg-primary/20 blur-[2px]"
           style={{
             width: el.size,
             height: el.size,
             left: `${el.x}%`,
-            top: `-5%`,
+            top: `-10vh`,
           }}
         />
       ))}
 
-      {/* Background Glows */}
-      <div className="absolute top-1/4 -left-20 w-[600px] h-[600px] bg-primary/10 blur-[120px] rounded-full" />
-      <div className="absolute bottom-1/4 -right-20 w-[600px] h-[600px] bg-secondary/10 blur-[120px] rounded-full" />
+      {/* Background Glows with Parallax */}
+      <motion.div 
+        style={{ y: glow1Y }}
+        className="absolute top-1/4 -left-40 w-[800px] h-[800px] bg-primary/10 blur-[150px] rounded-full" 
+      />
+      <motion.div 
+        style={{ y: glow2Y }}
+        className="absolute bottom-1/4 -right-40 w-[800px] h-[800px] bg-secondary/10 blur-[150px] rounded-full" 
+      />
+      
+      {/* Vignette Overlay */}
+      <div 
+        className="absolute inset-0" 
+        style={{ background: 'radial-gradient(circle at center, transparent 0%, transparent 70%, hsl(var(--background) / 0.4) 100%)' }}
+      />
     </div>
   );
 };

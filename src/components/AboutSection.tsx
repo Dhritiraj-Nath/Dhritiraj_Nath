@@ -32,9 +32,9 @@ const AboutSection = () => {
             <div className="flex flex-wrap gap-4">
               <a 
                 href="#contact" 
-                className="px-8 py-4 bg-primary text-primary-foreground rounded-2xl font-bold flex items-center gap-2 hover:shadow-2xl hover:shadow-primary/40 transition-all hover:-translate-y-1"
+                className="px-8 py-4 bg-primary text-primary-foreground rounded-2xl font-bold flex items-center gap-2 hover:shadow-2xl hover:shadow-primary/40 transition-all hover:-translate-y-1 group"
               >
-                Let's Collaborate <ArrowRight size={20} />
+                Let's Collaborate <ArrowRight size={20} className="transition-transform group-hover:translate-x-1.5" />
               </a>
               <a 
                 href="/Dhritiraj_Nath_Resume.pdf" 
@@ -55,7 +55,7 @@ const AboutSection = () => {
           >
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-4">
-                <div className="glass p-6 rounded-3xl border-primary/20 aspect-square flex flex-col justify-between group overflow-hidden relative">
+                <div className="glass p-6 rounded-3xl aspect-square flex flex-col justify-between group overflow-hidden relative">
                    <div className="absolute inset-0 bg-primary/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                    <Terminal className="text-primary" size={32} />
                    <div className="relative z-10">
@@ -63,19 +63,19 @@ const AboutSection = () => {
                     <p className="text-xs text-muted-foreground">My primary workspace and daily driver.</p>
                    </div>
                 </div>
-                <div className="glass p-6 rounded-3xl border-primary/20 bg-primary/5">
+                <div className="glass p-6 rounded-3xl bg-primary/5">
                    <Shield className="text-primary mb-4" size={32} />
                    <h4 className="font-bold text-lg mb-1">Security</h4>
                    <p className="text-xs text-muted-foreground">Hardening infrastructure at every layer.</p>
                 </div>
               </div>
               <div className="space-y-4 pt-8">
-                <div className="glass p-6 rounded-3xl border-primary/20">
+                <div className="glass p-6 rounded-3xl">
                    <Globe className="text-primary mb-4" size={32} />
                    <h4 className="font-bold text-lg mb-1">Cloud</h4>
                    <p className="text-xs text-muted-foreground">Deploying globally across AWS & Azure.</p>
                 </div>
-                <div className="glass p-6 rounded-3xl border-primary/20 aspect-square flex flex-col justify-between group overflow-hidden relative">
+                <div className="glass p-6 rounded-3xl aspect-square flex flex-col justify-between group overflow-hidden relative">
                    <div className="absolute inset-0 bg-primary/5 -translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                    <Code className="text-primary" size={32} />
                    <div className="relative z-10">

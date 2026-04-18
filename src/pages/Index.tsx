@@ -12,27 +12,42 @@ import YouTubeSection from "@/components/YouTubeSection";
 import Background3DEffect from "@/components/Background3DEffect";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
 import PageEndEffect from "@/components/PageEndEffect";
+import DeploymentLogs from "@/components/DeploymentLogs";
+import BootScreen from "@/components/BootScreen";
+import { useState, useEffect } from "react";
+import { AnimatePresence } from "framer-motion";
 
 const Index = () => {
+  const [isBooted, setIsBooted] = useState(false);
+
   return (
     <div className="min-h-screen relative">
-      <Background3DEffect />
-      <CursorFollower />
-      <ThemeSwitcher />
-      <Navbar />
-      <HeroSection />
-      <AboutSection />
-      <SkillsSection />
-      <ExperienceSection />
-      <EducationSection />
-      <ProjectsSection />
-      <BlogSection />
-      <YouTubeSection />
-      <ContactSection />
-      <footer className="py-8 text-center text-sm text-muted-foreground border-t border-border">
-        © 2026 Dhritiraj Nath. All rights reserved.
-      </footer>
-      <PageEndEffect />
+      <AnimatePresence mode="wait">
+        {!isBooted && <BootScreen onComplete={() => setIsBooted(true)} />}
+      </AnimatePresence>
+      
+      {isBooted && (
+        <>
+          <Background3DEffect />
+          <CursorFollower />
+          <ThemeSwitcher />
+          <DeploymentLogs />
+          <Navbar />
+          <HeroSection />
+          <AboutSection />
+          <SkillsSection />
+          <ExperienceSection />
+          <EducationSection />
+          <ProjectsSection />
+          <BlogSection />
+          <YouTubeSection />
+          <ContactSection />
+          <footer className="py-8 text-center text-sm text-muted-foreground border-t border-border">
+            © 2026 Dhritiraj Nath. All rights reserved.
+          </footer>
+          <PageEndEffect />
+        </>
+      )}
     </div>
   );
 };
